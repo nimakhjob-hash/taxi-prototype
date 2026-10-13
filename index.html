@@ -1,10 +1,57 @@
 <!doctype html>
 <html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>سامانه مراسم ملی و مذهبی | پروتوتایپ</title>
-<style>body{margin:0;background:#f3f6fa;font-family:Tahoma,sans-serif;color:#243247;font-size:14px}header{background:linear-gradient(110deg,#183153,#285ea8);color:#fff;padding:26px 5vw}header h1{margin:0 0 8px;font-size:23px}header p{margin:0;color:#e1eaf7}.wrap{max-width:900px;margin:24px auto;padding:0 18px;display:grid;gap:14px}a.c{display:block;background:#fff;border:1px solid #dce4ee;border-radius:14px;padding:20px;text-decoration:none;color:inherit;box-shadow:0 5px 18px #1c35550a}a.c:hover{border-color:#6c96d2}a.c b{display:block;font-size:16px;margin-bottom:6px;color:#285ea8}a.c span{color:#68778b;line-height:1.9;font-size:12px}.note{background:#f0f6ff;color:#315d93;border-radius:10px;padding:14px;line-height:2;font-size:12px}</style></head>
-<body><header><h1>سامانه مدیریت مراسم ملی و مذهبی</h1><p>پروتوتایپ تعاملی · نسخه نمایشی</p></header>
+<style>
+*{box-sizing:border-box}body{margin:0;font-size:14px}
+header h1{margin:0 0 8px;font-size:25px}header p{margin:0;line-height:1.9}
+.wrap{max-width:1100px;margin:26px auto;padding:0 18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.st{background:#fff;border:1px solid #eadfc3;border-radius:14px;padding:16px 18px;box-shadow:0 6px 20px #8a6a1012;border-top:4px solid #ffc21f}
+.st span{display:block;color:#7a6a45;font-size:12px;margin-bottom:6px}.st b{font-size:26px;color:#3a2a08}
+h2.sec{font-size:17px;margin:30px 0 14px;display:flex;align-items:center;gap:10px}h2.sec::before{content:"";width:22px;height:12px;background:conic-gradient(#14110c 25%,#fff 0 50%,#14110c 0 75%,#fff 0) 0 0/6px 6px;border:1px solid #14110c}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+a.step{position:relative;display:block;background:#fff;border:1px solid #eadfc3;border-radius:14px;padding:18px 18px 16px;text-decoration:none;color:inherit;box-shadow:0 6px 20px #8a6a1012;transition:.15s}
+a.step:hover{transform:translateY(-3px);border-color:#ffb300}
+a.step .n{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#ffc21f;color:#2b2208;font-weight:bold;margin-bottom:10px}
+a.step b{display:block;font-size:15px;margin-bottom:6px;color:#3a2a08}a.step span{color:#7a6a45;font-size:12px;line-height:1.9}
+a.step i{position:absolute;left:14px;top:14px;font-style:normal;background:#1c1710;color:#ffd23f;border-radius:20px;padding:3px 10px;font-size:11px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.cards.four{grid-template-columns:repeat(4,1fr)}
+.cd{background:#fff;border:1px solid #eadfc3;border-radius:14px;padding:16px;box-shadow:0 6px 20px #8a6a1012}
+.cd b{display:block;font-size:15px;margin-bottom:8px;color:#3a2a08}.cd p{margin:4px 0;color:#6b5a30;font-size:12px;line-height:1.9}
+.plate{direction:ltr;display:inline-flex;align-items:stretch;border:2px solid #14110c;border-radius:6px;background:#fff;margin:8px 0;font-weight:bold;font-size:14px;overflow:hidden}
+.plate i{background:#1e4fa3;color:#fff;font-size:9px;font-style:normal;padding:4px 5px;display:grid;place-items:center}
+.plate b{padding:4px 9px;margin:0;font-size:14px;color:#14110c}.plate u{text-decoration:none;border-right:2px solid #14110c;padding:2px 7px;text-align:center;font-size:13px;line-height:1.2}.plate small{display:block;font-size:8px}
+.tw{background:#fff;border:1px solid #eadfc3;border-radius:14px;overflow:auto;box-shadow:0 6px 20px #8a6a1012}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:620px}th,td{padding:12px 12px;border-bottom:1px solid #f1e8d0;text-align:right}
+.go{display:inline-block;margin-top:12px;background:#ffc21f;color:#2b2208;text-decoration:none;font-weight:bold;border-radius:8px;padding:10px 18px}
+.note{margin-top:26px;background:#fff6dc;color:#7a5200;border-radius:10px;padding:14px;line-height:2;font-size:12px}
+@media(max-width:900px){.stats,.cards.four{grid-template-columns:repeat(2,1fr)}.steps,.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.stats,.steps,.cards,.cards.four{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="theme.css">
+<script src="common.js"></script></head>
+<body>
+<header><h1>سامانه مدیریت مراسم ملی و مذهبی</h1><p>تعریف مراسم · تخصیص راننده · کارتابل بررسی و تسویه</p></header>
 <div class="wrap">
-<a class="c" href="01-taarif-marasem.html"><b>۱. تعریف مراسم</b><span>ثبت مراسم، مسیرها و تعداد راننده موردنیاز؛ فعال/غیرفعال‌سازی مراسم.</span></a>
-<a class="c" href="02-takhssis-ranande.html"><b>۲. تخصیص راننده به مراسم</b><span>انتخاب راننده (۴ راننده‌ی آزمایشی)، مراسم ثبت‌شده و مسیر؛ ثبت درخواست.</span></a>
-<a class="c" href="03-barrasi-darkhast.html"><b>۳. کارتابل</b><span>بررسی درخواست ← بررسی حضور ← بررسی مالی ← تأیید مالی و تسویه.</span></a>
-<div class="note">همه‌ی داده‌ها آزمایشی‌اند و فقط در مرورگر همین دستگاه ذخیره می‌شوند. برای شروع از اول، دکمه‌ی «بازنشانی داده‌های نمونه» را در نوار بالای صفحه‌ها بزنید.</div>
-</div></body></html>
+<div class="stats" id="stats"></div>
+<h2 class="sec">مسیر کار</h2>
+<div class="steps" id="steps"></div>
+<h2 class="sec">آخرین پرونده‌ها</h2>
+<div class="tw"><table><thead><tr><th>شماره</th><th>راننده</th><th>مراسم</th><th>مسیر</th><th>مبلغ (ریال)</th><th>وضعیت</th></tr></thead><tbody id="rows"></tbody></table></div>
+<a class="go" href="03-barrasi-darkhast.html">رفتن به کارتابل</a>
+<h2 class="sec">مراسم‌های ثبت‌شده</h2>
+<div class="cards" id="cers"></div>
+<h2 class="sec">رانندگان آزمایشی</h2>
+<div class="cards four" id="drv"></div>
+<div class="note">همه‌ی داده‌ها آزمایشی‌اند و فقط در مرورگر همین دستگاه ذخیره می‌شوند؛ هر بازدیدکننده با داده‌ی نمونه‌ی خودش شروع می‌کند. برای برگشت به حالت اول، دکمه‌ی «بازنشانی داده‌های نمونه» را در نوار بالا بزنید.</div>
+</div>
+<script>
+const M=window.MRS,db=M.load(),cs=M.cers(),$=id=>document.getElementById(id);
+const open=db.requests.filter(M.isOpen).length,done=db.requests.filter(r=>r.stage==='done').length;
+$('stats').innerHTML=[['مراسم ثبت‌شده',cs.length],['رانندگان آزمایشی',db.drivers.length],['پرونده در جریان',open],['تسویه‌شده',done]].map(a=>`<div class="st"><span>${a[0]}</span><b>${M.fa(a[1])}</b></div>`).join('');
+const steps=[{n:1,t:'تعریف مراسم',d:'ثبت مراسم، بازه‌ی زمانی، مسیرها و هزینه هر راننده',h:'01-taarif-marasem.html'},{n:2,t:'تخصیص راننده',d:'انتخاب راننده، مراسم و مسیر و ثبت درخواست',h:'02-takhssis-ranande.html'}].concat(M.STAGES.map((s,i)=>({n:i+3,t:s.label,d:s.desc,h:M.KART,c:db.requests.filter(r=>r.stage===s.key).length})));
+$('steps').innerHTML=steps.map(s=>`<a class="step" href="${s.h}">${s.c!=null?`<i>${M.fa(s.c)} پرونده</i>`:''}<div class="n">${M.fd(s.n)}</div><b>${s.t}</b><span>${s.d}</span></a>`).join('');
+$('rows').innerHTML=db.requests.slice(0,6).map(r=>{const d=M.driver(r.driverId)||{},o=M.isOpen(r);return `<tr><td>${M.fd(r.id)}</td><td>${M.esc((d.first||'')+' '+(d.last||''))}</td><td>${M.esc(r.ceremonyTitle)}</td><td>${M.esc(r.routeLabel)}</td><td>${M.fa(r.amount)}</td><td>${o?`<span class="status">${M.stage(r.stage).label}</span>`:r.stage==='done'?'<span class="status green">تسویه‌شده</span>':`<span class="status red">${M.esc(r.final.label)}</span>`}</td></tr>`}).join('')||'<tr><td colspan="6">پرونده‌ای ثبت نشده است.</td></tr>';
+$('cers').innerHTML=cs.map(c=>`<div class="cd"><b>${M.esc(c.title)}</b><p>تاریخ: ${M.esc(M.fd(c.startDate))}${c.endDate!==c.startDate?' تا '+M.esc(M.fd(c.endDate)):''}</p><p>راننده موردنیاز: ${M.fa(c.totalDrivers)}</p><p>${M.fa((c.routes||[]).length)} محل استقرار</p></div>`).join('')||'<div class="cd">مراسمی ثبت نشده است.</div>';
+$('drv').innerHTML=db.drivers.map(d=>{const p=d.plate.split(' ');return `<div class="cd"><b>${M.esc(d.first+' '+d.last)}</b><div class="plate"><i>IR</i><b>${M.esc(p.slice(0,3).join(' '))}</b><u><small>ایران</small>${M.esc(p[4]||'')}</u></div><p>${M.esc(d.type)} · مدل ${M.esc(d.year)}</p><p>${M.fa(d.years)} سال سابقه · ${M.fa(d.attend)} بار حضور</p></div>`}).join('');
+</script>
+</body></html>

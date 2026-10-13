@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>تعریف مراسم | سامانه مراسم ملی و مذهبی</title>
+<link rel="stylesheet"
+ href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+
+<script src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
 <style>
 :root{--navy:#183153;--blue:#285ea8;--teal:#178b83;--bg:#f3f6fa;--line:#dce4ee;--text:#243247;--muted:#68778b;--white:#fff;--red:#b54747;--green:#217a54}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,"Segoe UI",sans-serif;color:var(--text);font-size:14px}
@@ -32,6 +36,7 @@ footer{text-align:center;color:#8591a1;font-size:11px;padding:10px 20px 28px}
 @media(max-width:900px){.shell{grid-template-columns:1fr;padding:0 12px;margin-top:14px}aside{position:static;display:flex;flex-wrap:wrap;align-items:center;gap:4px}.side-title{width:100%;padding-bottom:5px}.nav{width:auto;flex:1}.aside-note{width:100%;margin-top:8px}.grid,.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.route-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){header{padding:18px}.grid,.grid.two,.summary,.route-fields{grid-template-columns:1fr}.panel{padding:15px}.nav{font-size:12px;padding:10px 7px}.nav .num{display:none}table{min-width:650px}.table-wrap{overflow:auto}}
 </style>
+<link rel="stylesheet" href="theme.css">
 <script src="common.js"></script>
 </head>
 <body>
@@ -48,11 +53,15 @@ footer{text-align:center;color:#8591a1;font-size:11px;padding:10px 20px 28px}
  <div class="panel">
   <h3>اطلاعات پایه مراسم</h3>
   <div class="grid">
-   <div class="field"><label>تاریخ شروع مراسم <b class="req">*</b></label><input id="startDate" type="date"></div>
-   <div class="field"><label>تاریخ پایان مراسم <b class="req">*</b></label><input id="endDate" type="date"></div>
-   <div class="field"><label>عنوان مراسم <b class="req">*</b></label><select id="ceremonyTitle"><option value="">انتخاب کنید</option><option>راهپیمایی ۲۲ بهمن</option><option>روز جهانی قدس</option><option>مراسم نیمه شعبان</option><option>مراسم اربعین</option><option>مراسم ملی و مذهبی دیگر</option></select><span class="help">عنوان از فهرست عناوین تعریف‌شده انتخاب می‌شود.</span></div>
+   <div class="field"><label>تاریخ شروع مراسم <b class="req">*</b></label><input id="startDate" type="text" data-jdp placeholder="مثلاً ۱۴۰۵/۱۱/۲۲" autocomplete="off"></div>
+   <div class="field"><label>تاریخ پایان مراسم <b class="req">*</b></label><input id="endDate" type="text" data-jdp placeholder="مثلاً ۱۴۰۵/۱۱/۲۲" autocomplete="off"></div>
+   <div class="field"><label>عنوان مراسم <b class="req">*</b></label><select id="ceremonyTitle"><option value="">انتخاب کنید</option><option>راهپیمایی ۲۲ بهمن</option><option>روز جهانی قدس</option><option>مراسم نیمه شعبان</option><option>مراسم اربعین</option></select><span class="help">عنوان از فهرست عناوین تعریف‌شده انتخاب می‌شود.</span></div>
+   <div class="field"><label>محدودیت تخصیص راننده</label><div class="checks"><label class="check"><input type="checkbox" name="limit1" value="راننده">راننده</label><label class="check"><input type="checkbox" name="limit1" value="تاکسی">تاکسی</label><label class="check"><input type="checkbox" name="limit1" value="هیچکدام">هیچکدام</label></div></div>
+   <div class="field"><label>جنسیت راننده</label><select><option>بدون فیلتر</option><option>زن</option><option>مرد</option></select></div>
+   <div class="field"><label>نوع تاکسی</label><select><option>هر دو</option><option>سواری</option><option>ون</option></select></div>
+   <div class="field"><label>سیستم تاکسی</label><select><option>همه</option><option>آیون</option><option>دلیکا</option><option>پراید</option><option>پژو</option><option>سمند</option><option>سایر</option></select></div>
+   <div class="field"><label>تعداد تاکسی واجد شرایط</label><input readonly value="محاسبه پس از اتصال به داده‌ها"></div>
    <div class="field"><label>تعداد کل رانندگان موردنیاز <b class="req">*</b></label><input id="totalDrivers" type="number" min="1" placeholder="مثلاً ۱۲۰"></div>
-   <div class="field"><label>وضعیت مراسم</label><select id="ceremonyStatus"><option>فعال</option><option>غیرفعال</option></select><span class="help">امکان غیرفعال‌سازی پیش از تاریخ پایان.</span></div>
   </div>
  </div>
  <div class="panel">
@@ -67,11 +76,6 @@ footer{text-align:center;color:#8591a1;font-size:11px;padding:10px 20px 28px}
      <div class="field"><label>زمان مسیر (دقیقه) <b class="req">*</b></label><input type="number" min="1" placeholder="۳۰"></div>
      <div class="field"><label>تعداد تاکسی موردنیاز <b class="req">*</b></label><input type="number" min="1" placeholder="۲۰"></div>
      <div class="field"><label>هزینه هر راننده (ریال) <b class="req">*</b></label><input type="number" min="0" placeholder="۰"></div>
-     <div class="field"><label>محدودیت تخصیص راننده</label><div class="checks"><label class="check"><input type="checkbox" name="limit1" value="راننده">راننده</label><label class="check"><input type="checkbox" name="limit1" value="تاکسی">تاکسی</label><label class="check"><input type="checkbox" name="limit1" value="هیچکدام">هیچکدام</label></div></div>
-     <div class="field"><label>جنسیت راننده</label><select><option>بدون فیلتر</option><option>زن</option><option>مرد</option></select></div>
-     <div class="field"><label>نوع تاکسی</label><select><option>هر دو</option><option>سواری</option><option>ون</option></select></div>
-     <div class="field"><label>سیستم تاکسی</label><select><option>تمام سیستم‌ها</option><option>تاکسی شهری</option><option>تاکسی تلفنی</option><option>سایر</option></select></div>
-     <div class="field"><label>تعداد تاکسی واجد شرایط</label><input readonly value="محاسبه پس از اتصال به داده‌ها"></div>
     </div>
    </div>
   </div>
@@ -91,26 +95,549 @@ footer{text-align:center;color:#8591a1;font-size:11px;padding:10px 20px 28px}
 const $=id=>document.getElementById(id);
 function showToast(t){const el=$('toast');if(!el)return;el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3000)}
 </script>
+
 <script>
-let routeCount=document.querySelectorAll('#routes .route-card').length || 1;
-$('addRoute')?.addEventListener('click',()=>{if(routeCount>=30){showToast('حداکثر ۳۰ محل استقرار قابل تعریف است.');return}routeCount++;const d=document.createElement('div');d.className='route-card';d.innerHTML=`<div class="route-head"><strong>محل استقرار ${routeCount}</strong><button class="btn danger remove-route">حذف محل</button></div><div class="route-fields"><div class="field"><label>ایستگاه استقرار راننده *</label><input placeholder="نام ایستگاه"></div><div class="field"><label>مقصد ایستگاه *</label><input placeholder="نام مقصد"></div><div class="field"><label>زمان مسیر (دقیقه) *</label><input type="number" min="1"></div><div class="field"><label>تعداد تاکسی موردنیاز *</label><input type="number" min="1"></div><div class="field"><label>هزینه هر راننده (ریال) *</label><input type="number" min="0"></div><div class="field"><label>محدودیت تخصیص راننده</label><div class="checks"><label class="check"><input type="checkbox">راننده</label><label class="check"><input type="checkbox">تاکسی</label><label class="check"><input type="checkbox">هیچکدام</label></div></div><div class="field"><label>جنسیت راننده</label><select><option>بدون فیلتر</option><option>زن</option><option>مرد</option></select></div><div class="field"><label>نوع تاکسی</label><select><option>هر دو</option><option>سواری</option><option>ون</option></select></div><div class="field"><label>سیستم تاکسی</label><select><option>تمام سیستم‌ها</option><option>تاکسی شهری</option><option>تاکسی تلفنی</option><option>سایر</option></select></div><div class="field"><label>تعداد تاکسی واجد شرایط</label><input readonly value="محاسبه پس از اتصال به داده‌ها"></div></div>`;$('routes').appendChild(d);d.querySelector('.remove-route').onclick=()=>{d.remove();routeCount--;document.querySelectorAll('#routes .route-head strong').forEach((e,i)=>e.textContent='محل استقرار '+(i+1))}});
-$('saveCeremony').onclick=()=>{let missing=[];if(!$('startDate').value)missing.push('تاریخ شروع');if(!$('endDate').value)missing.push('تاریخ پایان');if(!$('ceremonyTitle').value)missing.push('عنوان مراسم');if(!$('totalDrivers').value||+$('totalDrivers').value<1)missing.push('تعداد رانندگان');
-const routes=[...document.querySelectorAll('#routes .route-card')].map(c=>{const i=c.querySelectorAll('input:not([type=checkbox]):not([readonly])');return{from:i[0].value.trim(),to:i[1].value.trim(),min:+i[2].value||0,taxis:+i[3].value||0,cost:+i[4].value||0}}).filter(r=>r.from&&r.to);
-if(!routes.length)missing.push('حداقل یک محل استقرار (ایستگاه و مقصد)');
-const m=$('ceremonyMsg');m.classList.remove('hidden','ok','warning');
-if(missing.length){m.textContent='لطفاً فیلدهای ضروری را تکمیل کنید: '+missing.join('، ')+'.';m.classList.add('warning');return}
-if($('endDate').value<$('startDate').value){m.textContent='تاریخ پایان نمی‌تواند قبل از تاریخ شروع باشد.';m.classList.add('warning');return}
-const db=MRS.load();db.ceremonies.unshift({id:'c'+Date.now(),title:$('ceremonyTitle').value,start:$('startDate').value,end:$('endDate').value,total:+$('totalDrivers').value,active:$('ceremonyStatus').value==='فعال',routes});MRS.save(db);renderCeremonies();
-m.textContent='مراسم ثبت شد و برای تخصیص راننده در دسترس است.';m.classList.add('ok');showToast('مراسم ثبت شد.');
-['startDate','endDate','totalDrivers'].forEach(id=>$(id).value='');$('ceremonyTitle').value='';
-document.querySelectorAll('#routes .route-card input:not([type=checkbox]):not([readonly])').forEach(x=>x.value='')};
-$('resetCeremony').onclick=()=>{['startDate','endDate','totalDrivers'].forEach(id=>$(id).value='');$('ceremonyTitle').value='';$('ceremonyStatus').value='فعال';$('ceremonyMsg').classList.add('hidden')};
-document.addEventListener('change',e=>{if(e.target.type==='checkbox'){const group=e.target.closest('.checks');if(!group)return;const boxes=[...group.querySelectorAll('input[type=checkbox]')];if(e.target.checked&&e.target.parentElement.textContent.trim()==='هیچکدام')boxes.filter(x=>x!==e.target).forEach(x=>x.checked=false);else if(e.target.checked)boxes.filter(x=>x.parentElement.textContent.trim()==='هیچکدام').forEach(x=>x.checked=false)}});
-</script>
-<script>
-function renderCeremonies(){const f=s=>new Date(s).toLocaleDateString('fa-IR');$('ceremonyRows').innerHTML=MRS.load().ceremonies.map(c=>`<tr><td>${MRS.esc(c.title)}</td><td>${f(c.start)}${c.end!==c.start?' تا '+f(c.end):''}</td><td>${MRS.fa(c.total)}</td><td><span class="status ${c.active?'green':'red'}">${c.active?'فعال':'غیرفعال'}</span></td><td><button class="btn secondary" data-id="${c.id}">${c.active?'غیرفعال‌سازی':'فعال‌سازی'}</button></td></tr>`).join('')}
-$('ceremonyRows').onclick=e=>{const b=e.target.closest('button[data-id]');if(!b)return;const db=MRS.load();const c=db.ceremonies.find(x=>x.id===b.dataset.id);c.active=!c.active;MRS.save(db);renderCeremonies()};
-renderCeremonies();
+const STORAGE_KEY = "nationalCeremonies_v1";
+let ceremonies = [];
+let editingId = null;
+let routeCount = 0;
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const data = saved ? JSON.parse(saved) : [];
+    ceremonies = Array.isArray(data) ? data : [];
+  } catch (error) {
+    ceremonies = [];
+    showToast("خواندن اطلاعات ذخیره‌شده با خطا مواجه شد.");
+    console.error(error);
+  }
+}
+
+function saveData() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ceremonies));
+    return true;
+  } catch (error) {
+    showToast("ذخیره اطلاعات انجام نشد. فضای مرورگر را بررسی کنید.");
+    console.error(error);
+    return false;
+  }
+}
+
+function newId() {
+  return window.crypto && crypto.randomUUID
+    ? crypto.randomUUID()
+    : Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+function getMainGrid() {
+  return document.querySelector("#page-ceremony .panel .grid");
+}
+
+function getMainSelect(index) {
+  return getMainGrid().children[index].querySelector("select");
+}
+
+function normalizeDigits(value) {
+  const fa = "۰۱۲۳۴۵۶۷۸۹";
+  const ar = "٠١٢٣٤٥٦٧٨٩";
+
+  return String(value)
+    .replace(/[۰-۹]/g, d => fa.indexOf(d))
+    .replace(/[٠-٩]/g, d => ar.indexOf(d))
+    .replace(/-/g, "/")
+    .trim();
+}
+
+function parseJalaliDate(value) {
+  const normalized = normalizeDigits(value);
+  const match = normalized.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+
+  if (!match) return null;
+
+  return [
+    Number(match[1]),
+    Number(match[2]),
+    Number(match[3])
+  ];
+}
+
+function compareJalaliDates(first, second) {
+  const a = parseJalaliDate(first);
+  const b = parseJalaliDate(second);
+
+  if (!a || !b) return null;
+
+  for (let i = 0; i < 3; i++) {
+    if (a[i] < b[i]) return -1;
+    if (a[i] > b[i]) return 1;
+  }
+
+  return 0;
+}
+
+function addRoute(route = {}) {
+  const container = $("routes");
+
+  if (container.querySelectorAll(".route-card").length >= 30) {
+    showToast("حداکثر ۳۰ محل استقرار قابل تعریف است.");
+    return;
+  }
+
+  const card = document.createElement("div");
+  card.className = "route-card";
+
+  card.innerHTML = `
+    <div class="route-head">
+      <strong></strong>
+      <button type="button" class="btn danger remove-route">حذف محل</button>
+    </div>
+
+    <div class="route-fields">
+      <div class="field">
+        <label>ایستگاه استقرار راننده *</label>
+        <input class="r-station" placeholder="مثلاً میدان آزادی" required>
+      </div>
+
+      <div class="field">
+        <label>مقصد ایستگاه *</label>
+        <input class="r-destination" placeholder="مثلاً میدان انقلاب" required>
+      </div>
+
+      <div class="field">
+        <label>زمان مسیر (دقیقه) *</label>
+        <input class="r-duration" type="number" min="1" placeholder="۳۰" required>
+      </div>
+
+      <div class="field">
+        <label>تعداد تاکسی موردنیاز *</label>
+        <input class="r-taxi-count" type="number" min="1" placeholder="۲۰" required>
+      </div>
+
+      <div class="field">
+        <label>هزینه هر راننده (ریال) *</label>
+        <input class="r-cost" type="number" min="0" placeholder="۰" required>
+      </div>
+    </div>
+
+    <div class="route-fields" style="margin-top:12px">
+      <div class="field">
+        <label>محدودیت تخصیص راننده</label>
+        <div class="checks">
+          <label class="check"><input type="checkbox" class="r-limit" value="راننده">راننده</label>
+          <label class="check"><input type="checkbox" class="r-limit" value="تاکسی">تاکسی</label>
+          <label class="check"><input type="checkbox" class="r-limit" value="هیچکدام">هیچکدام</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>جنسیت راننده</label>
+        <select class="r-gender">
+          <option>بدون فیلتر</option>
+          <option>زن</option>
+          <option>مرد</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>نوع تاکسی</label>
+        <select class="r-taxi-type">
+          <option>هر دو</option>
+          <option>سواری</option>
+          <option>ون</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>سیستم تاکسی</label>
+        <select class="r-system">
+          <option>تمام سیستم‌ها</option>
+          <option>تاکسی شهری</option>
+          <option>تاکسی تلفنی</option>
+          <option>آیون</option>
+          <option>دلیکا</option>
+          <option>پراید</option>
+          <option>پژو</option>
+          <option>سمند</option>
+          <option>سایر</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>تعداد تاکسی واجد شرایط</label>
+        <input readonly value="محاسبه پس از اتصال به داده‌ها">
+      </div>
+    </div>
+  `;
+
+  card.querySelector(".r-station").value = route.station || "";
+  card.querySelector(".r-destination").value = route.destination || "";
+  card.querySelector(".r-duration").value = route.duration ?? "";
+  card.querySelector(".r-taxi-count").value = route.taxiCount ?? "";
+  card.querySelector(".r-cost").value = route.cost ?? "";
+  card.querySelector(".r-gender").value = route.gender || "بدون فیلتر";
+  card.querySelector(".r-taxi-type").value = route.taxiType || "هر دو";
+  card.querySelector(".r-system").value = route.system || "تمام سیستم‌ها";
+
+  const savedLimits = Array.isArray(route.limits) ? route.limits : [];
+  card.querySelectorAll(".r-limit").forEach(box => {
+    box.checked = savedLimits.includes(box.value);
+  });
+
+  card.querySelector(".remove-route").addEventListener("click", () => {
+    card.remove();
+    renumberRoutes();
+  });
+
+  container.appendChild(card);
+  renumberRoutes();
+}
+
+function renumberRoutes() {
+  const cards = document.querySelectorAll("#routes .route-card");
+  routeCount = cards.length;
+
+  cards.forEach((card, index) => {
+    card.querySelector(".route-head strong").textContent =
+      "محل استقرار " + (index + 1);
+  });
+}
+
+function getRoutes() {
+  return [...document.querySelectorAll("#routes .route-card")].map(card => ({
+    station: card.querySelector(".r-station").value.trim(),
+    destination: card.querySelector(".r-destination").value.trim(),
+    duration: card.querySelector(".r-duration").value,
+    taxiCount: card.querySelector(".r-taxi-count").value,
+    cost: card.querySelector(".r-cost").value,
+    limits: [...card.querySelectorAll(".r-limit:checked")].map(x => x.value),
+    gender: card.querySelector(".r-gender").value,
+    taxiType: card.querySelector(".r-taxi-type").value,
+    system: card.querySelector(".r-system").value
+  }));
+}
+
+function getFormData() {
+  const restrictions = [
+    ...document.querySelectorAll('input[name="limit1"]:checked')
+  ].map(input => input.value);
+
+  return {
+    startDate: $("startDate").value.trim(),
+    endDate: $("endDate").value.trim(),
+    title: $("ceremonyTitle").value,
+    restrictions,
+    gender: getMainSelect(4).value,
+    taxiType: getMainSelect(5).value,
+    system: getMainSelect(6).value,
+    totalDrivers: $("totalDrivers").value,
+    routes: getRoutes()
+  };
+}
+
+function validateData(data) {
+  const missing = [];
+
+  if (!data.startDate) missing.push("تاریخ شروع");
+  if (!data.endDate) missing.push("تاریخ پایان");
+  if (!data.title) missing.push("عنوان مراسم");
+
+  if (!data.totalDrivers || Number(data.totalDrivers) < 1) {
+    missing.push("تعداد کل رانندگان موردنیاز");
+  }
+
+  if (missing.length) {
+    showMessage("لطفاً فیلدهای ضروری را تکمیل کنید: " + missing.join("، ") + ".", "warning");
+    return false;
+  }
+
+  const comparison = compareJalaliDates(data.startDate, data.endDate);
+
+  if (comparison === 1) {
+    showMessage("تاریخ پایان نمی‌تواند قبل از تاریخ شروع باشد.", "warning");
+    return false;
+  }
+
+  if (comparison === null) {
+    showMessage("قالب تاریخ باید به شکل سال/ماه/روز باشد؛ مانند ۱۴۰۵/۰۷/۲۱.", "warning");
+    return false;
+  }
+
+  if (data.routes.length === 0) {
+    showMessage("حداقل یک محل استقرار تعریف کنید.", "warning");
+    return false;
+  }
+
+  for (let i = 0; i < data.routes.length; i++) {
+    const route = data.routes[i];
+
+    if (
+      !route.station ||
+      !route.destination ||
+      !route.duration ||
+      Number(route.duration) < 1 ||
+      !route.taxiCount ||
+      Number(route.taxiCount) < 1 ||
+      route.cost === "" ||
+      Number(route.cost) < 0
+    ) {
+      showMessage(
+        "اطلاعات ضروری محل استقرار شماره " + (i + 1) + " را کامل کنید.",
+        "warning"
+      );
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function showMessage(message, type) {
+  const el = $("ceremonyMsg");
+  el.textContent = message;
+  el.classList.remove("hidden", "ok", "warning");
+  el.classList.add(type);
+}
+
+function renderTable() {
+  const tbody = $("ceremonyRows");
+  tbody.innerHTML = "";
+
+  if (ceremonies.length === 0) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 5;
+    cell.textContent = "هنوز مراسمی ثبت نشده است.";
+    cell.style.textAlign = "center";
+    row.appendChild(cell);
+    tbody.appendChild(row);
+    return;
+  }
+
+  ceremonies.forEach(item => {
+    const row = document.createElement("tr");
+
+    const titleCell = document.createElement("td");
+    titleCell.textContent = item.title;
+    row.appendChild(titleCell);
+
+    const dateCell = document.createElement("td");
+    dateCell.textContent = item.startDate + " تا " + item.endDate;
+    row.appendChild(dateCell);
+
+    const driversCell = document.createElement("td");
+    driversCell.textContent = item.totalDrivers;
+    row.appendChild(driversCell);
+
+    const statusCell = document.createElement("td");
+    const badge = document.createElement("span");
+    badge.className = "status green";
+    badge.textContent = "ثبت‌شده";
+    statusCell.appendChild(badge);
+    row.appendChild(statusCell);
+
+    const actionsCell = document.createElement("td");
+
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.className = "btn secondary";
+    editButton.textContent = "ویرایش";
+    editButton.addEventListener("click", () => editCeremony(item.id));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "btn danger";
+    deleteButton.textContent = "حذف";
+    deleteButton.style.marginRight = "6px";
+    deleteButton.addEventListener("click", () => deleteCeremony(item.id));
+
+    actionsCell.append(editButton, deleteButton);
+    row.appendChild(actionsCell);
+    tbody.appendChild(row);
+  });
+}
+
+function editCeremony(id) {
+  const item = ceremonies.find(x => x.id === id);
+  if (!item) return;
+
+  editingId = id;
+
+  $("startDate").value = item.startDate;
+  $("endDate").value = item.endDate;
+  $("ceremonyTitle").value = item.title;
+  $("totalDrivers").value = item.totalDrivers;
+
+  getMainSelect(4).value = item.gender;
+  getMainSelect(5).value = item.taxiType;
+  getMainSelect(6).value = item.system;
+
+  document.querySelectorAll('input[name="limit1"]').forEach(box => {
+    box.checked = item.restrictions.includes(box.value);
+  });
+
+  $("routes").innerHTML = "";
+  (item.routes || []).forEach(route => addRoute(route));
+
+  if (!item.routes || item.routes.length === 0) addRoute();
+
+  $("saveCeremony").textContent = "ذخیره تغییرات";
+  showMessage("حالت ویرایش فعال است. پس از اصلاح، ذخیره تغییرات را بزنید.", "ok");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function deleteCeremony(id) {
+  const item = ceremonies.find(x => x.id === id);
+  if (!item) return;
+
+  if (!confirm("آیا از حذف مراسم «" + item.title + "» مطمئن هستید؟")) {
+    return;
+  }
+
+  const previous = ceremonies;
+  ceremonies = ceremonies.filter(x => x.id !== id);
+
+  if (!saveData()) {
+    ceremonies = previous;
+    return;
+  }
+
+  if (editingId === id) resetForm();
+  renderTable();
+  showToast("مراسم حذف شد.");
+}
+
+function resetForm() {
+  editingId = null;
+  $("startDate").value = "";
+  $("endDate").value = "";
+  $("ceremonyTitle").selectedIndex = 0;
+  $("totalDrivers").value = "";
+
+  getMainSelect(4).selectedIndex = 0;
+  getMainSelect(5).selectedIndex = 0;
+  getMainSelect(6).selectedIndex = 0;
+
+  document.querySelectorAll('input[name="limit1"]').forEach(box => {
+    box.checked = false;
+  });
+
+  $("routes").innerHTML = "";
+  addRoute();
+
+  $("saveCeremony").textContent = "ثبت اطلاعات مراسم";
+  $("ceremonyMsg").classList.add("hidden");
+}
+
+$("addRoute").addEventListener("click", () => addRoute());
+
+$("saveCeremony").addEventListener("click", () => {
+  const data = getFormData();
+
+  if (!validateData(data)) return;
+
+  if (editingId) {
+    const index = ceremonies.findIndex(x => x.id === editingId);
+
+    if (index === -1) {
+      showToast("مراسم موردنظر پیدا نشد.");
+      return;
+    }
+
+    const previous = ceremonies[index];
+
+    ceremonies[index] = {
+      ...previous,
+      ...data,
+      updatedAt: new Date().toISOString()
+    };
+
+    if (!saveData()) {
+      ceremonies[index] = previous;
+      return;
+    }
+
+    renderTable();
+    resetForm();
+    showToast("تغییرات مراسم ذخیره شد.");
+  } else {
+    const item = {
+      id: newId(),
+      ...data,
+      createdAt: new Date().toISOString()
+    };
+
+    ceremonies.unshift(item);
+
+    if (!saveData()) {
+      ceremonies = ceremonies.filter(x => x.id !== item.id);
+      return;
+    }
+
+    renderTable();
+    resetForm();
+    showToast("مراسم با موفقیت ذخیره شد.");
+  }
+});
+
+$("resetCeremony").addEventListener("click", () => {
+  resetForm();
+  showToast("فرم پاک شد.");
+});
+
+// گزینه «هیچکدام» با گزینه‌های دیگر هم‌زمان انتخاب نمی‌شود.
+document.addEventListener("change", event => {
+  const box = event.target;
+
+  if (box.type !== "checkbox" || !box.checked) return;
+
+  const group = box.closest(".checks");
+  if (!group) return;
+
+  const boxes = [...group.querySelectorAll('input[type="checkbox"]')];
+
+  if (box.value === "هیچکدام" || box.parentElement.textContent.trim() === "هیچکدام") {
+    boxes.filter(other => other !== box).forEach(other => {
+      other.checked = false;
+    });
+  } else {
+    boxes.forEach(other => {
+      if (
+        other !== box &&
+        (other.value === "هیچکدام" ||
+          other.parentElement.textContent.trim() === "هیچکدام")
+      ) {
+        other.checked = false;
+      }
+    });
+  }
+});
+
+// شروع برنامه
+loadData();
+
+// ردیف نمونه قبلی حذف می‌شود و جدول از داده‌های واقعی ساخته می‌شود.
+$("routes").innerHTML = "";
+addRoute();
+renderTable();
+
+if (window.jalaliDatepicker) {
+  jalaliDatepicker.startWatch({
+    selector: "[data-jdp]",
+    autoShow: true,
+    autoHide: true,
+    showTodayBtn: true,
+    showEmptyBtn: true,
+    time: false,
+    date: true,
+    separatorChars: {
+      date: "/"
+    }
+  });
+} else {
+  showToast("تقویم شمسی بارگذاری نشد؛ اتصال اینترنت را بررسی کنید.");
+}
 </script>
 </body>
 </html>

@@ -32,6 +32,7 @@ footer{text-align:center;color:#8591a1;font-size:11px;padding:10px 20px 28px}
 @media(max-width:900px){.shell{grid-template-columns:1fr;padding:0 12px;margin-top:14px}aside{position:static;display:flex;flex-wrap:wrap;align-items:center;gap:4px}.side-title{width:100%;padding-bottom:5px}.nav{width:auto;flex:1}.aside-note{width:100%;margin-top:8px}.grid,.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.route-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){header{padding:18px}.grid,.grid.two,.summary,.route-fields{grid-template-columns:1fr}.panel{padding:15px}.nav{font-size:12px;padding:10px 7px}.nav .num{display:none}table{min-width:650px}.table-wrap{overflow:auto}}
 </style>
+<link rel="stylesheet" href="theme.css">
 <script src="common.js"></script>
 </head>
 <body>
@@ -83,9 +84,9 @@ function showToast(t){const el=$('toast');if(!el)return;el.textContent=t;el.styl
 <script>
 const M=window.MRS,db0=M.load();
 $('driverId').innerHTML='<option value="">انتخاب راننده واجد شرایط</option>'+db0.drivers.map(d=>`<option value="${d.nationalId}">${M.fd(d.nationalId)} — ${M.esc(d.first+' '+d.last)}</option>`).join('');
-$('allocationTitle').innerHTML='<option value="">انتخاب مراسم فعال</option>'+db0.ceremonies.filter(c=>c.active).map(c=>`<option value="${c.id}">${M.esc(c.title)}</option>`).join('');
+$('allocationTitle').innerHTML='<option value="">انتخاب مراسم فعال</option>'+(M.cers().map(c=>`<option value="${c.id}">${M.esc(c.title)}</option>`).join('')||'<option value="">مراسمی ثبت نشده؛ ابتدا فرم ۱ را پر کنید</option>');
 $('driverId').onchange=()=>{const d=M.driver($('driverId').value);[['driverFirst','first'],['driverLast','last'],['mobile','mobile'],['savedPlate','plate'],['carYear','year'],['carType','type']].forEach(([id,k])=>$(id).value=d?d[k]:'');if(d)$('plate').value=d.plate};
-$('allocationTitle').onchange=()=>{const c=M.ceremony($('allocationTitle').value);$('routeSelect').innerHTML=c?'<option value="">انتخاب مسیر</option>'+c.routes.map((r,i)=>`<option value="${i}">${M.esc(r.from+' ← '+r.to)}</option>`).join(''):'<option value="">ابتدا مراسم را انتخاب کنید</option>'};
+$('allocationTitle').onchange=()=>{const c=M.ceremony($('allocationTitle').value);$('routeSelect').innerHTML=c?'<option value="">انتخاب مسیر</option>'+c.routes.map((r,i)=>`<option value="${i}">${M.esc(M.routeLabel(r))}</option>`).join(''):'<option value="">ابتدا مراسم را انتخاب کنید</option>'};
 function clearAlloc(){['plate','driverId','allocationTitle','routeSelect','bank','account','sheba'].forEach(id=>$(id).value='');$('driverId').dispatchEvent(new Event('change'));$('allocationTitle').dispatchEvent(new Event('change'))}
 $('submitAllocation').onclick=()=>{const required=[['plate','پلاک خودرو'],['driverId','کد ملی راننده'],['allocationTitle','نوع مراسم'],['routeSelect','مسیر'],['bank','بانک'],['account','شماره حساب'],['sheba','شماره شبا']];const miss=required.filter(([id])=>!$(id).value).map(x=>x[1]);const m=$('allocationMsg');m.classList.remove('hidden','ok','warning');
 if(miss.length){m.textContent='لطفاً این موارد را تکمیل کنید: '+miss.join('، ')+'.';m.classList.add('warning');return}
