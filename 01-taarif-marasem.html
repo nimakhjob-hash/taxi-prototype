@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تعریف مراسم | سامانه مراسم ملی و مذهبی</title>
+<style>
+:root{--navy:#183153;--blue:#285ea8;--teal:#178b83;--bg:#f3f6fa;--line:#dce4ee;--text:#243247;--muted:#68778b;--white:#fff;--red:#b54747;--green:#217a54}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,"Segoe UI",sans-serif;color:var(--text);font-size:14px}
+header{background:linear-gradient(110deg,#183153,#285ea8);color:#fff;padding:22px 5vw 18px}
+header .eyebrow{font-size:12px;opacity:.8;margin-bottom:8px}header h1{margin:0 0 8px;font-size:23px}header p{margin:0;color:#e1eaf7;line-height:1.9}
+.shell{display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;max-width:1440px;margin:24px auto;padding:0 22px}
+aside,.panel,.card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 18px #1c35550a}
+aside{padding:14px;height:max-content;position:sticky;top:15px}
+.side-title{font-size:12px;color:var(--muted);padding:8px 10px 12px}
+.nav{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;text-align:right;padding:13px 12px;border-radius:9px;font:inherit;color:var(--text);cursor:pointer;margin-bottom:5px}
+.nav.active{background:#eaf1fb;color:var(--blue);font-weight:bold}.nav .num{width:27px;height:27px;border-radius:8px;background:#edf1f6;display:grid;place-items:center;font-size:12px}.nav.active .num{background:var(--blue);color:#fff}
+.aside-note{margin:18px 5px 4px;padding:12px;background:#f7f9fc;border-radius:9px;color:var(--muted);font-size:11px;line-height:1.9}
+main{min-width:0}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 16px;flex-wrap:wrap}.topline h2{margin:0;font-size:20px}.pill{background:#e8f6f3;color:#13796f;padding:7px 11px;border-radius:20px;font-size:12px}
+.panel{padding:22px;margin-bottom:17px}.panel h3{font-size:15px;margin:0 0 17px;padding-bottom:12px;border-bottom:1px solid #edf1f6}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field label{font-size:12px;color:#4a5b70}.req{color:var(--red)}input,select,textarea{width:100%;font:inherit;color:var(--text);background:#fff;border:1px solid #cdd8e5;border-radius:8px;padding:11px 12px;outline:none}input:focus,select:focus,textarea:focus{border-color:#6c96d2;box-shadow:0 0 0 3px #285ea815}input[readonly]{background:#f5f7fa;color:#6d7c8f}textarea{min-height:86px;resize:vertical}
+.help{font-size:11px;color:var(--muted);line-height:1.8}.section-intro{font-size:12px;color:var(--muted);line-height:1.9;margin:-6px 0 16px}
+.checks{display:flex;flex-wrap:wrap;gap:10px}.check{display:flex;gap:7px;align-items:center;background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:10px 12px}.check input{width:auto}
+.route-card{border:1px solid var(--line);border-radius:10px;padding:15px;margin:12px 0;background:#fbfcfe}.route-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.route-head strong{font-size:13px}.route-fields{display:grid;grid-template-columns:1.2fr 1.2fr .8fr .9fr;gap:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:0;border-radius:8px;padding:11px 17px;font:inherit;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#edf2f8;color:#304a6b}.success{background:var(--green);color:white}.danger{background:#fff0f0;color:var(--red);border:1px solid #f2d4d4}
+.hidden{display:none!important}.notice{padding:12px 14px;border-radius:9px;background:#f0f6ff;color:#315d93;line-height:1.9;margin:12px 0;font-size:12px}.notice.warning{background:#fff8e8;color:#8a6415}.notice.ok{background:#eaf7f0;color:#236e4b}
+.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:16px}.stat{background:#f7f9fc;border:1px solid var(--line);padding:15px;border-radius:10px}.stat span{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.stat strong{font-size:20px;color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:12px 10px;border-bottom:1px solid #e8edf3;text-align:right}th{color:#596b80;background:#f7f9fc;font-weight:bold}
+.status{display:inline-block;padding:5px 8px;border-radius:20px;font-size:11px;background:#fff4d8;color:#8a6415}.status.green{background:#e8f6ee;color:#23764d}.status.red{background:#ffeded;color:#a33d3d}
+.toast{position:fixed;bottom:22px;left:22px;background:#183153;color:#fff;padding:13px 18px;border-radius:10px;box-shadow:0 8px 28px #0002;display:none;z-index:5}
+footer{text-align:center;color:#8591a1;font-size:11px;padding:10px 20px 28px}
+@media(max-width:900px){.shell{grid-template-columns:1fr;padding:0 12px;margin-top:14px}aside{position:static;display:flex;flex-wrap:wrap;align-items:center;gap:4px}.side-title{width:100%;padding-bottom:5px}.nav{width:auto;flex:1}.aside-note{width:100%;margin-top:8px}.grid,.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.route-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){header{padding:18px}.grid,.grid.two,.summary,.route-fields{grid-template-columns:1fr}.panel{padding:15px}.nav{font-size:12px;padding:10px 7px}.nav .num{display:none}table{min-width:650px}.table-wrap{overflow:auto}}
+</style>
+<script src="common.js"></script>
+</head>
+<body>
+<header>
+ <div class="eyebrow">پروتوتایپ تعاملی · نسخه نمایشی</div>
+ <h1>سامانه مدیریت مراسم ملی و مذهبی</h1>
+ <p>تعریف مراسم</p>
+</header>
+<div class="shell" style="display:block;max-width:1200px">
+<main>
+<div class="topline"><h2>تعریف مراسم</h2><span class="pill">فرم مستقل</span></div>
+<section id="page-ceremony">
+ <div class="topline"><h2>تعریف مراسم</h2><span class="pill">نقش نمونه: مدیر پهنه / معاون نظارت</span></div>
+ <div class="panel">
+  <h3>اطلاعات پایه مراسم</h3>
+  <div class="grid">
+   <div class="field"><label>تاریخ شروع مراسم <b class="req">*</b></label><input id="startDate" type="date"></div>
+   <div class="field"><label>تاریخ پایان مراسم <b class="req">*</b></label><input id="endDate" type="date"></div>
+   <div class="field"><label>عنوان مراسم <b class="req">*</b></label><select id="ceremonyTitle"><option value="">انتخاب کنید</option><option>راهپیمایی ۲۲ بهمن</option><option>روز جهانی قدس</option><option>مراسم نیمه شعبان</option><option>مراسم اربعین</option><option>مراسم ملی و مذهبی دیگر</option></select><span class="help">عنوان از فهرست عناوین تعریف‌شده انتخاب می‌شود.</span></div>
+   <div class="field"><label>تعداد کل رانندگان موردنیاز <b class="req">*</b></label><input id="totalDrivers" type="number" min="1" placeholder="مثلاً ۱۲۰"></div>
+   <div class="field"><label>وضعیت مراسم</label><select id="ceremonyStatus"><option>فعال</option><option>غیرفعال</option></select><span class="help">امکان غیرفعال‌سازی پیش از تاریخ پایان.</span></div>
+  </div>
+ </div>
+ <div class="panel">
+  <div class="topline"><h3 style="border:0;padding:0;margin:0">مسیرها و محل‌های استقرار</h3><button class="btn secondary" id="addRoute">＋ افزودن محل استقرار</button></div>
+  <p class="section-intro">حداکثر ۳۰ محل استقرار قابل تعریف است. تعداد تاکسی موردنیاز هر محل در مجموع باید با ظرفیت مراسم سازگار باشد.</p>
+  <div id="routes">
+   <div class="route-card">
+    <div class="route-head"><strong>محل استقرار ۱</strong><span class="status">نمونه</span></div>
+    <div class="route-fields">
+     <div class="field"><label>ایستگاه استقرار راننده <b class="req">*</b></label><input placeholder="مثلاً میدان آزادی"></div>
+     <div class="field"><label>مقصد ایستگاه <b class="req">*</b></label><input placeholder="مثلاً میدان انقلاب"></div>
+     <div class="field"><label>زمان مسیر (دقیقه) <b class="req">*</b></label><input type="number" min="1" placeholder="۳۰"></div>
+     <div class="field"><label>تعداد تاکسی موردنیاز <b class="req">*</b></label><input type="number" min="1" placeholder="۲۰"></div>
+     <div class="field"><label>هزینه هر راننده (ریال) <b class="req">*</b></label><input type="number" min="0" placeholder="۰"></div>
+     <div class="field"><label>محدودیت تخصیص راننده</label><div class="checks"><label class="check"><input type="checkbox" name="limit1" value="راننده">راننده</label><label class="check"><input type="checkbox" name="limit1" value="تاکسی">تاکسی</label><label class="check"><input type="checkbox" name="limit1" value="هیچکدام">هیچکدام</label></div></div>
+     <div class="field"><label>جنسیت راننده</label><select><option>بدون فیلتر</option><option>زن</option><option>مرد</option></select></div>
+     <div class="field"><label>نوع تاکسی</label><select><option>هر دو</option><option>سواری</option><option>ون</option></select></div>
+     <div class="field"><label>سیستم تاکسی</label><select><option>تمام سیستم‌ها</option><option>تاکسی شهری</option><option>تاکسی تلفنی</option><option>سایر</option></select></div>
+     <div class="field"><label>تعداد تاکسی واجد شرایط</label><input readonly value="محاسبه پس از اتصال به داده‌ها"></div>
+    </div>
+   </div>
+  </div>
+  <div class="actions"><button class="btn primary" id="saveCeremony">ثبت اطلاعات مراسم</button><button class="btn secondary" id="resetCeremony">پاک‌کردن فرم</button></div>
+  <div id="ceremonyMsg" class="notice hidden"></div>
+ </div>
+ <div class="panel">
+  <h3>مراسم‌های ثبت‌شده (نمونه)</h3>
+  <div class="table-wrap"><table><thead><tr><th>عنوان مراسم</th><th>بازه زمانی</th><th>راننده موردنیاز</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="ceremonyRows"><tr><td>راهپیمایی ۲۲ بهمن</td><td>۱۴۰۵/۱۱/۲۲</td><td>۱۲۰</td><td><span class="status green">فعال</span></td><td><button class="btn secondary" onclick="showToast('حالت ویرایش نمایشی است.')">ویرایش</button></td></tr></tbody></table></div>
+ </div>
+</section>
+</main>
+</div>
+<footer>پروتوتایپ مفهومی · اطلاعات آزمایشی است و به پایگاه داده متصل نیست</footer>
+<div id="toast" class="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+function showToast(t){const el=$('toast');if(!el)return;el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3000)}
+</script>
+<script>
+let routeCount=document.querySelectorAll('#routes .route-card').length || 1;
+$('addRoute')?.addEventListener('click',()=>{if(routeCount>=30){showToast('حداکثر ۳۰ محل استقرار قابل تعریف است.');return}routeCount++;const d=document.createElement('div');d.className='route-card';d.innerHTML=`<div class="route-head"><strong>محل استقرار ${routeCount}</strong><button class="btn danger remove-route">حذف محل</button></div><div class="route-fields"><div class="field"><label>ایستگاه استقرار راننده *</label><input placeholder="نام ایستگاه"></div><div class="field"><label>مقصد ایستگاه *</label><input placeholder="نام مقصد"></div><div class="field"><label>زمان مسیر (دقیقه) *</label><input type="number" min="1"></div><div class="field"><label>تعداد تاکسی موردنیاز *</label><input type="number" min="1"></div><div class="field"><label>هزینه هر راننده (ریال) *</label><input type="number" min="0"></div><div class="field"><label>محدودیت تخصیص راننده</label><div class="checks"><label class="check"><input type="checkbox">راننده</label><label class="check"><input type="checkbox">تاکسی</label><label class="check"><input type="checkbox">هیچکدام</label></div></div><div class="field"><label>جنسیت راننده</label><select><option>بدون فیلتر</option><option>زن</option><option>مرد</option></select></div><div class="field"><label>نوع تاکسی</label><select><option>هر دو</option><option>سواری</option><option>ون</option></select></div><div class="field"><label>سیستم تاکسی</label><select><option>تمام سیستم‌ها</option><option>تاکسی شهری</option><option>تاکسی تلفنی</option><option>سایر</option></select></div><div class="field"><label>تعداد تاکسی واجد شرایط</label><input readonly value="محاسبه پس از اتصال به داده‌ها"></div></div>`;$('routes').appendChild(d);d.querySelector('.remove-route').onclick=()=>{d.remove();routeCount--;document.querySelectorAll('#routes .route-head strong').forEach((e,i)=>e.textContent='محل استقرار '+(i+1))}});
+$('saveCeremony').onclick=()=>{let missing=[];if(!$('startDate').value)missing.push('تاریخ شروع');if(!$('endDate').value)missing.push('تاریخ پایان');if(!$('ceremonyTitle').value)missing.push('عنوان مراسم');if(!$('totalDrivers').value||+$('totalDrivers').value<1)missing.push('تعداد رانندگان');
+const routes=[...document.querySelectorAll('#routes .route-card')].map(c=>{const i=c.querySelectorAll('input:not([type=checkbox]):not([readonly])');return{from:i[0].value.trim(),to:i[1].value.trim(),min:+i[2].value||0,taxis:+i[3].value||0,cost:+i[4].value||0}}).filter(r=>r.from&&r.to);
+if(!routes.length)missing.push('حداقل یک محل استقرار (ایستگاه و مقصد)');
+const m=$('ceremonyMsg');m.classList.remove('hidden','ok','warning');
+if(missing.length){m.textContent='لطفاً فیلدهای ضروری را تکمیل کنید: '+missing.join('، ')+'.';m.classList.add('warning');return}
+if($('endDate').value<$('startDate').value){m.textContent='تاریخ پایان نمی‌تواند قبل از تاریخ شروع باشد.';m.classList.add('warning');return}
+const db=MRS.load();db.ceremonies.unshift({id:'c'+Date.now(),title:$('ceremonyTitle').value,start:$('startDate').value,end:$('endDate').value,total:+$('totalDrivers').value,active:$('ceremonyStatus').value==='فعال',routes});MRS.save(db);renderCeremonies();
+m.textContent='مراسم ثبت شد و برای تخصیص راننده در دسترس است.';m.classList.add('ok');showToast('مراسم ثبت شد.');
+['startDate','endDate','totalDrivers'].forEach(id=>$(id).value='');$('ceremonyTitle').value='';
+document.querySelectorAll('#routes .route-card input:not([type=checkbox]):not([readonly])').forEach(x=>x.value='')};
+$('resetCeremony').onclick=()=>{['startDate','endDate','totalDrivers'].forEach(id=>$(id).value='');$('ceremonyTitle').value='';$('ceremonyStatus').value='فعال';$('ceremonyMsg').classList.add('hidden')};
+document.addEventListener('change',e=>{if(e.target.type==='checkbox'){const group=e.target.closest('.checks');if(!group)return;const boxes=[...group.querySelectorAll('input[type=checkbox]')];if(e.target.checked&&e.target.parentElement.textContent.trim()==='هیچکدام')boxes.filter(x=>x!==e.target).forEach(x=>x.checked=false);else if(e.target.checked)boxes.filter(x=>x.parentElement.textContent.trim()==='هیچکدام').forEach(x=>x.checked=false)}});
+</script>
+<script>
+function renderCeremonies(){const f=s=>new Date(s).toLocaleDateString('fa-IR');$('ceremonyRows').innerHTML=MRS.load().ceremonies.map(c=>`<tr><td>${MRS.esc(c.title)}</td><td>${f(c.start)}${c.end!==c.start?' تا '+f(c.end):''}</td><td>${MRS.fa(c.total)}</td><td><span class="status ${c.active?'green':'red'}">${c.active?'فعال':'غیرفعال'}</span></td><td><button class="btn secondary" data-id="${c.id}">${c.active?'غیرفعال‌سازی':'فعال‌سازی'}</button></td></tr>`).join('')}
+$('ceremonyRows').onclick=e=>{const b=e.target.closest('button[data-id]');if(!b)return;const db=MRS.load();const c=db.ceremonies.find(x=>x.id===b.dataset.id);c.active=!c.active;MRS.save(db);renderCeremonies()};
+renderCeremonies();
+</script>
+</body>
+</html>

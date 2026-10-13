@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بررسی حضور و فعالیت راننده</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f3f5f9;
+  color:#263449;
+  font-size:13px;
+}
+header{
+  background:#183b63;
+  color:#fff;
+  padding:22px 6%;
+}
+header h2{font-size:20px;margin:0 0 9px}
+header p{margin:0;color:#dce7f3;line-height:1.8}
+main{max-width:1100px;margin:28px auto;padding:0 18px}
+.card{
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  margin-bottom:18px;
+  overflow:hidden;
+  box-shadow:0 4px 14px #14213d08;
+}
+.card h3{
+  background:#f8fafc;
+  border-bottom:1px solid #e5eaf0;
+  padding:15px 20px;
+  margin:0;
+  font-size:14px;
+}
+.fields{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  padding:20px;
+}
+.field label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+  color:#46556a;
+}
+input,select,textarea{
+  width:100%;
+  border:1px solid #cfd8e3;
+  border-radius:7px;
+  padding:11px;
+  background:#fff;
+  font:inherit;
+  color:#263449;
+}
+input[readonly]{
+  background:#f2f5f8;
+  color:#596579;
+}
+textarea{min-height:90px;resize:vertical}
+.wide{grid-column:1/-1}
+.actions{
+  display:flex;
+  gap:10px;
+  padding:0 20px 20px;
+}
+button{
+  border:0;
+  border-radius:7px;
+  padding:11px 24px;
+  font:inherit;
+  cursor:pointer;
+}
+.primary{background:#1e5a91;color:white}
+.secondary{background:#e8edf3;color:#334155}
+.note{font-size:11px;color:#748094;margin-top:7px;line-height:1.8}
+.required{color:#c0392b}
+[hidden]{display:none!important}
+@media(max-width:700px){
+  .fields{grid-template-columns:1fr}
+  .wide{grid-column:auto}
+}
+</style>
+<script src="common.js"></script>
+</head>
+<body>
+
+<header>
+  <h2>سامانه تخصیص راننده به مراسم</h2>
+  <p>بررسی حضور و فعالیت راننده | کد فعالیت: T566</p>
+</header>
+
+<main>
+<form id="attendanceForm">
+
+  <section class="card">
+    <h3>۱. اطلاعات راننده</h3>
+    <div class="fields">
+      <div class="field">
+        <label for="nationalId">کد ملی راننده</label>
+        <input id="nationalId" type="text" placeholder="کد ملی راننده" readonly>
+      </div>
+      <div class="field">
+        <label for="firstName">نام راننده</label>
+        <input id="firstName" type="text" placeholder="نام راننده" readonly>
+      </div>
+      <div class="field">
+        <label for="lastName">نام خانوادگی راننده</label>
+        <input id="lastName" type="text" placeholder="نام خانوادگی راننده" readonly>
+      </div>
+      <div class="field">
+        <label for="mobile">شماره موبایل</label>
+        <input id="mobile" type="text" placeholder="شماره موبایل" readonly>
+      </div>
+      <div class="field">
+        <label for="plate">پلاک خودرو</label>
+        <input id="plate" type="text" placeholder="پلاک خودرو" readonly>
+      </div>
+      <div class="field">
+        <label for="carYear">سال تولید خودرو</label>
+        <input id="carYear" type="text" placeholder="سال تولید" readonly>
+      </div>
+      <div class="field">
+        <label for="carType">نوع خودرو</label>
+        <input id="carType" type="text" placeholder="نوع خودرو" readonly>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>۲. اطلاعات مراسم و مسیر</h3>
+    <div class="fields">
+      <div class="field">
+        <label for="eventType">عنوان مراسم</label>
+        <input id="eventType" type="text" placeholder="عنوان مراسم" readonly>
+      </div>
+      <div class="field">
+        <label for="route">مسیر انتخابی</label>
+        <input id="route" type="text" placeholder="مسیر انتخابی" readonly>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>۳. اطلاعات بانکی</h3>
+    <div class="fields">
+      <div class="field">
+        <label for="bank">بانک</label>
+        <input id="bank" type="text" placeholder="بانک ثبت‌شده در فرم تخصیص" >
+      </div>
+      <div class="field">
+        <label for="account">شماره حساب</label>
+        <input id="account" type="text" placeholder="شماره حساب" >
+      </div>
+      <div class="field">
+        <label for="iban">شماره شبا</label>
+        <input id="iban" type="text" placeholder="شماره شبا" >
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>۴. نتیجه بررسی حضور</h3>
+    <div class="fields">
+      <div class="field">
+        <label for="attendance">
+          وضعیت حضور در مراسم <span class="required">*</span>
+        </label>
+        <select id="attendance" required>
+          <option value="">انتخاب کنید</option>
+          <option value="present">حضور</option>
+          <option value="absent">عدم حضور</option>
+        </select>
+      </div>
+
+      <div class="field wide" id="notesContainer" hidden>
+        <label for="notes">توضیحات</label>
+        <textarea id="notes" placeholder="در صورت نیاز، توضیحات مربوط به عدم حضور راننده را وارد کنید"></textarea>
+        <div class="note">مطابق سند، این فیلد در صورت انتخاب «عدم حضور» نمایش داده می‌شود و اجباری نیست.</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit">ثبت بررسی</button>
+      <button class="secondary" type="reset">پاک کردن فرم</button>
+    </div>
+  </section>
+
+</form>
+</main>
+
+<script>
+const M=window.MRS,req=M.requireCase('attendance');
+if(req){const d=M.driver(req.driverId);M.fill({nationalId:d.nationalId,firstName:d.first,lastName:d.last,mobile:d.mobile,plate:d.plate,carYear:d.year,carType:d.type,eventType:req.ceremonyTitle,route:req.routeLabel,bank:req.bank,account:req.account,iban:req.sheba});['bank','account','iban'].forEach(id=>document.getElementById(id).readOnly=true);M.addBack()}
+const attendance=document.getElementById('attendance'),notesContainer=document.getElementById('notesContainer'),form=document.getElementById('attendanceForm');
+const upd=()=>{notesContainer.hidden=attendance.value!=='absent'};
+attendance.addEventListener('change',upd);
+form.addEventListener('submit',function(e){e.preventDefault();if(!this.reportValidity()||!req)return;const ok=attendance.value==='present';
+M.decide(req.id,ok,document.getElementById('notes').value.trim(),'عدم حضور در مراسم');M.flash(ok?'حضور ثبت شد؛ پرونده به بررسی مالی رفت.':'عدم حضور ثبت شد؛ پرونده بسته شد.');location.href=M.KART});
+form.addEventListener('reset',()=>setTimeout(upd,0));
+</script>
+
+</body>
+</html>
